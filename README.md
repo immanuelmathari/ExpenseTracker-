@@ -211,3 +211,12 @@ Input.js
 at the styles
 and also the inputStyles and the if below it
 - we want to make our styles to have conditions and standard styles and multiline styles.
+
+9.152 Setting the Form Layout
+ExpenseForm.js
+- wrapping into the second view
+Input.js
+adding a style prop
+- to allow a style prop to be added in ExpenseForm. check the first view
+
+9.153 Handling User Input in a generic way

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
 
-function Input({ label, textInputConfig })
+function Input({ label, textInputConfig , style})
 {
     const inputStyles = [styles.input];
 
@@ -9,9 +9,9 @@ function Input({ label, textInputConfig })
         inputStyles.push(styles.inputMultiline)
     }
 
-    return <View style={styles.inputContainer}>
+    return <View style={[styles.inputContainer, style]}>
         <Text style={styles.label}>
-            Label 
+            {label} 
         </Text>
         {/* <TextInput keyboardType={type} maxLength={maxLength} /> */}
         {/* instead of having alot of props, you use spread */}
