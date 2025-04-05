@@ -16,14 +16,24 @@ const BottomTabs = createBottomTabNavigator();
 
 // 04
 function ExpensesOverview() {
-  return <BottomTabs.Navigator screenOptions={{
+  // return <BottomTabs.Navigator screenOptions={{
+  //   headerStyle: { backgroundColor: GlobalStyles.colors.primary500},
+  //   headerTintColor: 'white',
+  //   tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500},
+  //   tabBarActiveTintColor: GlobalStyles.colors.accent500,
+  //   // we want to use headerTintColor for the icon color and React Native exposes a prop for that
+  //   headerRight: ({tintColor}) => <IconButton icon="add" size={24} color={tintColor} onPress={() => { }} />,
+  // }}>
+  return <BottomTabs.Navigator screenOptions={({ navigation}) => ({
     headerStyle: { backgroundColor: GlobalStyles.colors.primary500},
     headerTintColor: 'white',
     tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500},
     tabBarActiveTintColor: GlobalStyles.colors.accent500,
     // we want to use headerTintColor for the icon color and React Native exposes a prop for that
-    headerRight: ({tintColor}) => <IconButton icon="add" size={24} color={tintColor} onPress={() => { }} />,
-  }}>
+    headerRight: ({tintColor}) => <IconButton icon="add" size={24} color={tintColor} onPress={() => {
+      navigation.navigate('ManageExpense');
+     }} />,
+  })}>
     {/* goto styles.js */}
     {/* now we register the different screens we need */}
     <BottomTabs.Screen name="RecentExpenses" component={RecentExpenses} options={{

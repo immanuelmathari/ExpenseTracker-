@@ -102,3 +102,13 @@ this myfriend is the power of react native
 ExpenseItem.js
 @ Pressable onPress and the function
 we add pressed style too
+
+8.137 Navigating Programmatically Between Screens
+ExpenseItem.js
+- you see this ExpneseItem was not amoung the screens set for navigation, so we have to use the useNavigation hook
+- with this we can now navigate to a different screen
+- now when we tap on an expense we can go and manage it
+App.js 
+- we need to when we press + we go to manageExpenses. 
+@BottomTabs.Navigator
+- for the screen options, we could pass a function not only an object
