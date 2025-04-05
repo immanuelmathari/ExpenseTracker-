@@ -130,3 +130,7 @@ ManageExpense.js
 we can extract that parameter
 function ManageExpense({ route })
 use Layout effect is used to add something like setOptions to avoid flickering of the screen when we are navigating to it.
+
+8.140 Adding a delete button
+ManageExpense 
+@return
