@@ -60,10 +60,15 @@ export default function App() {
     {/* 01 */}
     <NavigationContainer>
       {/* 03 */}
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{
+        headerStyle: { backgroundColor: GlobalStyles.colors.primary500},
+        headerTintColor: 'white',
+      }}>
         {/* 05 we want also the bottom tabs  */}
         <Stack.Screen name="ExpensesOverview" component={ExpensesOverview} options={{ headerShown: false}} />
-        <Stack.Screen name="ManageExpense" component={ManageExpense} />
+        <Stack.Screen name="ManageExpense" component={ManageExpense} options={{
+          presentation: 'modal',
+        }} />
         {/* go back to 4 at the screen options */}
         
       </Stack.Navigator>

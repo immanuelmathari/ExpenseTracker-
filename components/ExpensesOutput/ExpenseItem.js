@@ -6,7 +6,10 @@ import { useNavigation } from "@react-navigation/native";
 function ExpenseItem({ description, amount, date }) {
     const navigation = useNavigation();
     function expensePressHandler() {
-        navigation.navigate('ManageExpense');
+        navigation.navigate('ManageExpense', {
+            // this is for us to have some information about the reason this action is opening the ExpenseItem screen either to edit or add a new expense
+            expenseId: id,
+        });
     }
     return <Pressable onPress={expensePressHandler} style={({ pressed }) => pressed && styles.pressed}>
         <View style={styles.expenseItem}>

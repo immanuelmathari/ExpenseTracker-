@@ -112,3 +112,21 @@ App.js
 - we need to when we press + we go to manageExpenses. 
 @BottomTabs.Navigator
 - for the screen options, we could pass a function not only an object
+
+8.138 Styling the expense Management App
+App.js
+@Stack.Navigator screenOptions
+                 Stack.screen
+there is a style called Presentation. its the way a screen is opened. we try modal
+
+8.139 Supporting Different Editing Modes & Using Route Parameters adding expense or editing expense effect to the title
+ManageExpense.js
+- we could be opening an adding expense or editing an expense. but we want to use the same screen. 
+- we need to find out why the screen was loaded, either adding or editing. meaning we need to foward some info as we load it in 
+ExpenseItem.js 
+@navigation.navigate('ManageExpense')
+in
+ManageExpense.js
+we can extract that parameter
+function ManageExpense({ route })
+use Layout effect is used to add something like setOptions to avoid flickering of the screen when we are navigating to it.
