@@ -36,3 +36,19 @@ App.js @//02 to do screenOptions
 - for the icons, we use Ionicons
 
 8.129 Creating key app components to show expenses
+- we want to output our expenses
+- we created a component
+ExpensesOutput/ExpensesOutput.js
+ExpensesOutput.js
+- we want to show the list in its own component
+create ExpensesList.js
+create ExpensesSummary.js
+
+8.130 Expense related components
+ExpensesSummery.js
+ExpensesOutput.js
+- we are simply adding the props
+NB: the periodName used in ExpenseSummery which is called from ExpenseOutput, is set somewhere else not in ExpenseOutput. it will be set in the two screen components that use the ExpenseOutput component which is AllExpenses and RecentExpenses
+in 
+ExpenseSummary.js we do const expensesSum
+- expense is a JS method used for arrays that allows you to combine multiple arrays in an arrays into a single one
