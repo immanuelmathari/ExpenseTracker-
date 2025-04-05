@@ -187,3 +187,16 @@ ExpensesOutput.js
 - fallback text
 RecentExpenses.js
 - add the fallbacktext
+
+SECTION 9 Handling User Input
+9.148 Building a Reusable Input Component with speading props
+components/ManageExpense/ExpenseForm.js
+ExpenseForm.js
+create ManageExpense/Input.js
+Input.js
+NOTE) this should be reusable
+{/* <TextInput keyboardType={type} maxLength={maxLength} /> */}
+        {/* instead of having alot of props, you use spread what you need */}
+- we use a differnet approach
+
+9.149 Creating an overall form
