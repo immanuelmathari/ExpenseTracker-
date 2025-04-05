@@ -83,3 +83,10 @@ because the
 function ExpenseItem({ description, amount, date }) {
 arrangement matches our data
     {id: 'e1', description: 'A pair of shoes', amount: 59.99, date: new Date('2025-01-01')},
+
+8.135 Formatting Dates
+we create a util folder
+util/date.js
+date.js
+- add +1 at the month because JS sees a month starting from 0
+ExpenseItem.js at the amountContainer
