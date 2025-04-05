@@ -134,3 +134,8 @@ use Layout effect is used to add something like setOptions to avoid flickering o
 8.140 Adding a delete button
 ManageExpense 
 @return
+
+8.141 Adding custom buttons
+Buttons.js
+ManageExpense.js
+@ the Button
