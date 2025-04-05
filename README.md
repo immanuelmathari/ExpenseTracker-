@@ -163,3 +163,15 @@ we expect to get expenseData which is an obhect with description, amount, and da
 NOTE) expense is a method in JavaScript JS that is used to find an element in an array and return a boolean value if its the element we are looking for
 - in case 'UPDATE', we know we have id because we pass it in dispatch. 
 - understand that dispatch comes before the cases. because its what gives the case data to work with
+
+- next init, we create a value object to bundle our data together to expose them to anything that'll consume it 
+
+App.js
+- go wrap
+in
+ExpensesOutput.js
+- remove DUMMYDATA
+AllExpenses.js && RecentExpenses
+- add useContext
+date.js
+@getDateMinusDays

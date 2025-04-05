@@ -13,10 +13,10 @@ const DUMMY_EXPENSES = [
 ]
 
 export const ExpenseContext = createContext({
-    expense: [],
+    expenses: [],
     addExpense: ({description, amount, date}) => {},
     deleteExpense: ({id}) => {},
-    addExpense: ({id, description, amount, date}) => {},
+    updateExpense: ({id, description, amount, date}) => {},
 
 });
 
@@ -40,7 +40,7 @@ function expenseReducer(state, action) {
     }
 }
 
-function ExpenseContextProvider({ childern }) {
+function ExpenseContextProvider({ children }) {
     //  the second array in useReducer is default this is for when the first time it renders when we have no data. we want to set initial data
     const [expenseState, dispatch] = useReducer(expenseReducer, DUMMY_EXPENSES);
 
@@ -56,7 +56,14 @@ function ExpenseContextProvider({ childern }) {
         dispatch({ type: 'UPDATE', payload: {id: id, data: expneseData}})
     }
 
-    return <ExpenseContext.Provider>{children}</ExpenseContext.Provider>
+    const value = {
+        expenses: expenseState,
+        addExpense: addExpense,
+        deleteExpense: deleteExpense,
+        updateExpense: updateExpense,
+    }
+
+    return <ExpenseContext.Provider value={value}>{children}</ExpenseContext.Provider>
 }
 
 export default ExpenseContextProvider

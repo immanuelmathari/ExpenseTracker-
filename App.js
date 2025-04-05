@@ -9,6 +9,7 @@ import AllExpenses from './screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
 import { Ionicons } from '@expo/vector-icons';
 import IconButton from './components/UI/IconButton';
+import ExpenseContextProvider from './store/expenses-context';
 
 // 02
 const Stack = createNativeStackNavigator(); // this is what gives us the navigator component and the one for registering screens
@@ -57,6 +58,8 @@ export default function App() {
   return (
     <>
     <StatusBar style="auto" />
+    <ExpenseContextProvider>
+
     {/* 01 */}
     <NavigationContainer>
       {/* 03 */}
@@ -74,6 +77,9 @@ export default function App() {
       </Stack.Navigator>
 
     </NavigationContainer>
+
+    </ExpenseContextProvider>
+
     </>
   );
 }
