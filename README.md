@@ -220,3 +220,13 @@ adding a style prop
 - to allow a style prop to be added in ExpenseForm. check the first view
 
 9.153 Handling User Input in a generic way
+Input.js xxx
+- working when user input change. 
+ExpenseForm.js
+@useState
+- we use an object
+@inputChnageHandler
+NOTE) we dynamically update
+- note how we set the values in the onChangeText
+
+9.154 Managing a form state and submission
