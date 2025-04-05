@@ -200,3 +200,14 @@ NOTE) this should be reusable
 - we use a differnet approach
 
 9.149 Creating an overall form
+
+9.150 Configuring form input elements
+ExpenseForm.js
+@ the inputs
+- we talked about the options you could have in ExpenseForm
+
+9.151 Adding style
+Input.js 
+at the styles
+and also the inputStyles and the if below it
+- we want to make our styles to have conditions and standard styles and multiline styles.
