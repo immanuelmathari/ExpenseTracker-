@@ -145,3 +145,21 @@ ManageExpnese
 @ the functions kina cancel Handler
 
 NOTE) goBack means going back to the screen that was there before you opened the modal
+
+8.143 implementing context api for app wide state (hardest || revisit || redo || rewatch )
+- create a store folder
+create expenses-context.js
+expense-context.js
+- define ExpenseContext and create the Context, 
+- create the ExpenseContextProvider without the useReducer so that you only return, 
+- export default
+- now define reducer in provider
+- define the reducer function we check the type of actions
+- then in the contextprovider, pass the expenseReducer as an argument to useReducer
+- the useReducer should return a state expenseState that will be managed by the expensesReducer and a dispatch function you can use to execute to dispatch a new function to the reducer function which can manipulate the state which we get a new state.
+- add addExpnese
+we expect to get expenseData which is an obhect with description, amount, and date and then now in the dispatch, we pass a function, we pass a value to dispatch which will be made available by react inside the reducer function as the second parameter (action). you can dispatch a number string object . you use what you will be checking for.  then you set a payload. then foward expensedata you receive to payload. dispatch will have different actions which will lead to different results. the job of the reducer is to return a new value either default or the cases defined by us
+- so you need to know that the switch cases code was added afterwards after ExpenseContextProvider
+NOTE) expense is a method in JavaScript JS that is used to find an element in an array and return a boolean value if its the element we are looking for
+- in case 'UPDATE', we know we have id because we pass it in dispatch. 
+- understand that dispatch comes before the cases. because its what gives the case data to work with
