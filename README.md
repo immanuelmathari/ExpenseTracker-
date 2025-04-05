@@ -59,3 +59,9 @@ ExpenseOutput.js
 AllExpenses.js
 
 8.132 Displaying a list of expenses
+ExpensesOutput.js
+@ where we foward expenses to ExpensesList
+ExpesesList.js
+the renderItem is a function that will be called for everyItem
+- at this point of the function id like to say something. this is where if say you had something that had to be used in the function like that time we had options to reduce or increase, wed have the function inside the ExpensesList
+- remember that keyExtractor takes a function of which property in the object to consider unique as key
