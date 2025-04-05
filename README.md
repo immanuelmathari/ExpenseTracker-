@@ -139,3 +139,9 @@ ManageExpense
 Buttons.js
 ManageExpense.js
 @ the Button
+
+8.142 Closing a modal programmatically
+ManageExpnese 
+@ the functions kina cancel Handler
+
+NOTE) goBack means going back to the screen that was there before you opened the modal
