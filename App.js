@@ -8,6 +8,7 @@ import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
 import { Ionicons } from '@expo/vector-icons';
+import IconButton from './components/UI/IconButton';
 
 // 02
 const Stack = createNativeStackNavigator(); // this is what gives us the navigator component and the one for registering screens
@@ -20,6 +21,8 @@ function ExpensesOverview() {
     headerTintColor: 'white',
     tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500},
     tabBarActiveTintColor: GlobalStyles.colors.accent500,
+    // we want to use headerTintColor for the icon color and React Native exposes a prop for that
+    headerRight: ({tintColor}) => <IconButton icon="add" size={24} color={tintColor} onPress={() => { }} />,
   }}>
     {/* goto styles.js */}
     {/* now we register the different screens we need */}

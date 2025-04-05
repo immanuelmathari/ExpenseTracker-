@@ -90,3 +90,15 @@ util/date.js
 date.js
 - add +1 at the month because JS sees a month starting from 0
 ExpenseItem.js at the amountContainer
+
+8.136 Adding a Header Button & Making Expense Items Tappable
+ManageExpense.js
+- we want to have a plus button to add expense button and we can tap the single expense to open the same screen in a different mode so that we can edit or delete one of the items
+@BottomTabs.Navigator screenOptions
+create a folder 
+UI/IconButton.js
+- this icon button we want to use it to be a reusable component so that can set name elsewhere. even the function that should be triggered when the icon is pressed we want it to be done where its called. 
+this myfriend is the power of react native
+ExpenseItem.js
+@ Pressable onPress and the function
+we add pressed style too
