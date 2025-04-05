@@ -230,3 +230,5 @@ NOTE) we dynamically update
 - note how we set the values in the onChangeText
 
 9.154 Managing a form state and submission
+- somehow we cut the reset and add from ManageExpense.js to ExpenseForm
+- so this guy just want us to use props for everything even cancelFormHandler etc the ones that were in ManageExpense
