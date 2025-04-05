@@ -181,3 +181,9 @@ date.js
 8.145 Deleting & Updating Expenses
 ManageExpense
 - ge the context
+
+8.146 Conditional rendering of content if no recent expense
+ExpensesOutput.js
+- fallback text
+RecentExpenses.js
+- add the fallbacktext
