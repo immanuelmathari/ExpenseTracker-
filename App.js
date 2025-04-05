@@ -6,6 +6,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
+import { GlobalStyles } from './constants/styles';
+import { Ionicons } from '@expo/vector-icons';
 
 // 02
 const Stack = createNativeStackNavigator(); // this is what gives us the navigator component and the one for registering screens
@@ -13,10 +15,28 @@ const BottomTabs = createBottomTabNavigator();
 
 // 04
 function ExpensesOverview() {
-  return <BottomTabs.Navigator>
+  return <BottomTabs.Navigator screenOptions={{
+    headerStyle: { backgroundColor: GlobalStyles.colors.primary500},
+    headerTintColor: 'white',
+    tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500},
+    tabBarActiveTintColor: GlobalStyles.colors.accent500,
+  }}>
+    {/* goto styles.js */}
     {/* now we register the different screens we need */}
-    <BottomTabs.Screen name="RecentExpenses" component={RecentExpenses} />
-    <BottomTabs.Screen name="AllExpenses" component={AllExpenses} />
+    <BottomTabs.Screen name="RecentExpenses" component={RecentExpenses} options={{
+      title: 'Recent Expenses',
+      tabBarLabel: 'Recent',
+      tabBarIcon: ({color, size}) => (
+      <Ionicons name="hourglass" size={size} color={color} />
+      )
+      }}  />
+    <BottomTabs.Screen name="AllExpenses" component={AllExpenses} options={{
+      title: 'All Expenses',
+      tabBarLabel: 'All Expenses',
+      tabBarIcon: ({color, size}) => (
+      <Ionicons name="calendar" size={size} color={color} />
+      )
+      }}  />
   </BottomTabs.Navigator>
 }
 
@@ -29,8 +49,9 @@ export default function App() {
       {/* 03 */}
       <Stack.Navigator>
         {/* 05 we want also the bottom tabs  */}
-        <Stack.Screen name="ExpensesOverview" component={ExpensesOverview} />
+        <Stack.Screen name="ExpensesOverview" component={ExpensesOverview} options={{ headerShown: false}} />
         <Stack.Screen name="ManageExpense" component={ManageExpense} />
+        {/* go back to 4 at the screen options */}
         
       </Stack.Navigator>
 

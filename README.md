@@ -22,3 +22,17 @@ App.js
 - so the logic is that we want to have a screen that can have two pages of RecentExpenses and All Expenses with a bottom navigator and then stacked ontop of it is the ManageExpense
 
 8.128 Adding Global Colors & Editing Navigation
+App.js
+- we want to see header of tabs navigator not stack navigator so that we dont have two navigators
+- we use at the Stack.Screen options={{headerShown: false}} to remove the header for the Stack Screen one
+- then in 04 we have ScreenOptions which comes after doing 05
+- we create a file
+constants/styles.js 
+to hold Global constants
+then goback to 
+App.js @//02 to do screenOptions
+- now with what we have done so far with the options of the BottomsTabs.Navigator, we have something that is becoming. 
+- set options of BottomTabs.Screen
+- for the icons, we use Ionicons
+
+8.129 Creating key app components to show expenses
