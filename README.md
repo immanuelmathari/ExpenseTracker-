@@ -65,3 +65,21 @@ ExpesesList.js
 the renderItem is a function that will be called for everyItem
 - at this point of the function id like to say something. this is where if say you had something that had to be used in the function like that time we had options to reduce or increase, wed have the function inside the ExpensesList
 - remember that keyExtractor takes a function of which property in the object to consider unique as key
+
+8.133 App layout and Styling
+ExpnesesSummary.js
+- working with styles
+- remember that default style is column
+ExpensesOutput.js
+
+we create
+ExpenseItem.js
+ExpenseItem.js
+ExpenseList.js
+- we render expenseItem
+here you see we just simply spread the data without passing the props why so
+    return <ExpenseItem {...item.item} />
+because the 
+function ExpenseItem({ description, amount, date }) {
+arrangement matches our data
+    {id: 'e1', description: 'A pair of shoes', amount: 59.99, date: new Date('2025-01-01')},
