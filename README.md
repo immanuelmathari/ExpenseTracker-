@@ -52,3 +52,10 @@ NB: the periodName used in ExpenseSummery which is called from ExpenseOutput, is
 in 
 ExpenseSummary.js we do const expensesSum
 - expense is a JS method used for arrays that allows you to combine multiple arrays in an arrays into a single one
+
+8.131 Adding Dummy Expense Data
+ExpenseOutput.js 
+@DUMMY_EXPENSE
+AllExpenses.js
+
+8.132 Displaying a list of expenses
