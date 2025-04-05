@@ -175,3 +175,9 @@ AllExpenses.js && RecentExpenses
 - add useContext
 date.js
 @getDateMinusDays
+
+- hee you have to go over this again and again
+
+8.145 Deleting & Updating Expenses
+ManageExpense
+- ge the context

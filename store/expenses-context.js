@@ -27,7 +27,7 @@ function expenseReducer(state, action) {
             // we pass what we receive the expense data and is made into a new data
             return [{...action.payload, id: id}, ...state]
         case 'UPDATE':
-            const updatableExpenseIndex = state.findIndex((expense) => {expense.id === action.payload.id} );
+            const updatableExpenseIndex = state.findIndex((expense) => expense.id === action.payload.id );
             const updatableExpense = state[updatableExpenseIndex];
             const updatedItem = { ...updatableExpense, ...action.payload.data };
             const updatedExpenses = [...state];
