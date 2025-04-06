@@ -12,7 +12,7 @@ created on 5th April 2025
 - this time we want to use bottom navigator
 > npm install @react-navigation/native-stack
 > npm install @react-navigation/bottom-tabs
-
+hello
 8.127 Adding Navigation & configuring it.
 - so as you well know, we need to install NavigationContainer 
 - we want to create a stack and a bottom tab 
