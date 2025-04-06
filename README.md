@@ -364,3 +364,15 @@ RecentExpenses.js
 ManageExpense.js
 - we add it when we do actions. so we add isSubmitting
 - isSubmitting
+
+10.170 Handling Request Errors
+create
+ErrorOverlay.js
+- we use it in 
+RecentExpenses.js
+@error useState
+- we make the useEffect use trycatch
+- in error && isFetching, you need to remember we set our error in a useState
+- this is react my friend
+ManageExpense.js
+- we set the error handling

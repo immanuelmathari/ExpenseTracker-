@@ -7,10 +7,12 @@ import { ExpenseContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import { deleteExpense, storeExpense, updateExpense } from "../util/http";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
+import ErrorOverlay from "../components/UI/ErrorOverlay";
 
 // function ManageExpense({  })
 function ManageExpense({ route, navigation }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState();
 
     const expenseCtx = useContext(ExpenseContext);
     // const editedExpenseId = route.params.expenseId; 
@@ -38,11 +40,24 @@ function ManageExpense({ route, navigation }) {
 
     // }
 
+    // async function deleteExpenseHandler() {
+    //     setIsSubmitting(true); // no need to set it to false after because we close it
+    //     await deleteExpense(editedExpenseId);
+    //     expenseCtx.deleteExpense( {id: editedExpenseId} ); // if this is first, we are removing it from ui first. so if backend fails, it will appear deleted but still be there
+    //     navigation.goBack();
+
+    // }
+
     async function deleteExpenseHandler() {
-        setIsSubmitting(true); // no need to set it to false after because we close it
-        await deleteExpense(editedExpenseId);
-        expenseCtx.deleteExpense( {id: editedExpenseId} ); // if this is first, we are removing it from ui first. so if backend fails, it will appear deleted but still be there
-        navigation.goBack();
+        setIsSubmitting(true); 
+        try {
+            await deleteExpense(editedExpenseId);
+            expenseCtx.deleteExpense( {id: editedExpenseId} ); 
+            navigation.goBack();
+        } catch (error) {
+            setError('Could not delete expense - please try again later');
+            setIsSubmitting(false);
+        }
 
     }
 
@@ -75,21 +90,35 @@ function ManageExpense({ route, navigation }) {
 
     async function  confirmHandler(expenseData) {
         setIsSubmitting(true);
-        if (isEditing) {
-            // console.log(expenseData);
-            expenseCtx.updateExpense({ id: editedExpenseId, expenseData: expenseData });
-            await updateExpense(editedExpenseId, expenseData);
-        } else {
-            const id = await storeExpense(expenseData);
-            // now id is part of the object we send to the context
-            expenseCtx.addExpense({...expenseData, id: id});
+        try {
+            if (isEditing) {
+                // console.log(expenseData);
+                expenseCtx.updateExpense({ id: editedExpenseId, expenseData: expenseData });
+                await updateExpense(editedExpenseId, expenseData);
+            } else {
+                const id = await storeExpense(expenseData);
+                // now id is part of the object we send to the context
+                expenseCtx.addExpense({...expenseData, id: id});
+            }
+            navigation.goBack();
+        } catch (error) {
+            setError('Could not save data - please try again later!');
+            setIsSubmitting(false);
         }
-        navigation.goBack();
+        
 
     }
 
     if(isSubmitting) {
         return <LoadingOverlay />
+    }
+
+    function errorHandler() {
+        setError(null);
+    }
+
+    if (error && !isSubmitting) {
+        return <ErrorOverlay message={error} onConfirm={errorHandler} />
     }
 
     return (
