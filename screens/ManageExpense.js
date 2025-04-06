@@ -5,7 +5,7 @@ import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
 import { ExpenseContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
-import { storeExpense } from "../util/http";
+import { deleteExpense, storeExpense, updateExpense } from "../util/http";
 
 // function ManageExpense({  })
 function ManageExpense({ route, navigation }) {
@@ -29,8 +29,15 @@ function ManageExpense({ route, navigation }) {
         })
     }, [navigation, isEditing])
 
-    function deleteExpenseHandler() {
-        expenseCtx.deleteExpense({ id: editedExpenseId });
+    // function deleteExpenseHandler() {
+    //     expenseCtx.deleteExpense({ id: editedExpenseId });
+    //     navigation.goBack();
+
+    // }
+
+    async function deleteExpenseHandler() {
+        await deleteExpense(editedExpenseId);
+        expenseCtx.deleteExpense( {id: editedExpenseId} ); // if this is first, we are removing it from ui first. so if backend fails, it will appear deleted but still be there
         navigation.goBack();
 
     }
@@ -64,7 +71,9 @@ function ManageExpense({ route, navigation }) {
 
     async function  confirmHandler(expenseData) {
         if (isEditing) {
-            expenseCtx.updateExpense({expenseData:  expenseData });
+            console.log(expenseData);
+            expenseCtx.updateExpense({ id: editedExpenseId, expenseData: expenseData });
+            await updateExpense(editedExpenseId, expenseData);
         } else {
             const id = await storeExpense(expenseData);
             // now id is part of the object we send to the context

@@ -344,3 +344,9 @@ http.js
 - firebase gives us the id at the @storeExpense in its response
 - so in ManageExpense at the confirmHandler, well get the id now
 - so anything we get from the firebase we need to async wait for it
+
+10.168 Updating & Deleting Backend Data (UPDATE & DELETE request)
+http.js
+@updateExpense
+@deleteExpense
+- somehow we dont need async because we dont need to do anything with the response. because we dont work with the response we remove async. we just return the result of doing the delete function nothing mrore
