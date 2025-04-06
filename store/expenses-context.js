@@ -44,7 +44,20 @@ function ExpenseContextProvider({ children }) {
     //  the second array in useReducer is default this is for when the first time it renders when we have no data. we want to set initial data
     const [expenseState, dispatch] = useReducer(expenseReducer, DUMMY_EXPENSES);
 
-    function addExpense({ expenseData }) {
+    // function addExpense({ expenseData }) {
+    //     dispatch({ type: 'ADD', payload: expenseData});
+    // }
+
+    // function deleteExpense({ id }) {
+    //     dispatch({ type: 'DELETE', payload: id});
+    // }
+
+    // function updateExpense({ id, expenseData  }) {
+    //     dispatch({ type: 'UPDATE', payload: {id: id, data: expenseData }})
+    // }
+
+    // i think there is no use of having the inputs as objects
+    function addExpense( expenseData ) {
         dispatch({ type: 'ADD', payload: expenseData});
     }
 
@@ -52,8 +65,8 @@ function ExpenseContextProvider({ children }) {
         dispatch({ type: 'DELETE', payload: id});
     }
 
-    function updateExpense({ id, expneseData }) {
-        dispatch({ type: 'UPDATE', payload: {id: id, data: expneseData}})
+    function updateExpense({ id, expenseData  }) {
+        dispatch({ type: 'UPDATE', payload: {id: id, data: expenseData }})
     }
 
     const value = {

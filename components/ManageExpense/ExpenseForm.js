@@ -14,7 +14,7 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel}) {
     // function amountChangeHandler(enteredAmount) {
     //     setAmountValue(enteredAmount);
     // }
-    function inputChangeHandler(inputIdentifier, enteredAmount) {
+    function inputChangeHandler(inputIdentifier, enteredValue) {
         setInputValues((curInputValues) => {
             return {
                 ...curInputValues,
@@ -24,7 +24,16 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel}) {
         });
     }
 
-    function submitHandler() {}
+    function submitHandler() {
+        // collecting input values
+        const expenseData = {
+            amount: +inputValues.amount,
+            date: new Date(inputValues.date),
+            description: inputValues.description,
+        };
+
+        onSubmit(expenseData);
+    }
 
     return <View style={styles.form}>
         <Text style={styles.title}>Your Expense</Text>
@@ -50,7 +59,7 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel}) {
                 multiline: true,
                 // autoCorrect: false,
                 // autoCapitalize: 'sentences' 
-                onChangeText: inputChangeHandler.bind(this, 'date'),
+                onChangeText: inputChangeHandler.bind(this, 'description'),
                 value: inputValues.description
             }} />
 

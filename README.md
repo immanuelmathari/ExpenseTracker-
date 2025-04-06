@@ -232,3 +232,17 @@ NOTE) we dynamically update
 9.154 Managing a form state and submission
 - somehow we cut the reset and add from ManageExpense.js to ExpenseForm
 - so this guy just want us to use props for everything even cancelFormHandler etc the ones that were in ManageExpense
+
+9.155 Working with Entered Data
+ExpenseForm.js
+@submitHandler
++inputValues.amount
+NOTE) converts string to a number
+- so we want in  
+ExpenseForm.js
+to have a @ submitHandler and inputChangeHandler
+- so we use the props of the onSubmit to enter that data
+ManageExpenses.js
+- we in @ confirmHandler, have to expect expenseData
+- this way we pass real user data to the context. 
+- now we connect this confirmHandler to the expenseForm using onSubmit
