@@ -246,3 +246,16 @@ ManageExpenses.js
 - we in @ confirmHandler, have to expect expenseData
 - this way we pass real user data to the context. 
 - now we connect this confirmHandler to the expenseForm using onSubmit
+
+9.156 Setting & using default Values
+ManageExpense.js
+@selectedExpense
+- we want to have prefilled values when we are edititng
+- we use the context to find a specific expence
+- remember that with reducers, all our app's data is init
+@ExpenseForm - defaultValues - pass it as a prop in 
+ExpenseForm.js
+- we set the default values brought in by ManageExpenses
+NOTE) we see how to convert data object into a way we can read it in JS JavaScript
+date.js
+- we want to use another way to format the data

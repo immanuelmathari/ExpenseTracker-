@@ -19,6 +19,9 @@ function ManageExpense({ route, navigation }) {
     //     title: isEditing ? 'Edit Expense' : 'Add Expense',
     // })
     // use Layout effect is used to add something like setOptions to avoid flickering of the screen when we are navigating to it.
+
+    const selectedExpense = expenseCtx.expenses.find(expense => expense.id === editedExpenseId)
+
     useLayoutEffect(() => {
         navigation.setOptions({
             title: isEditing ? 'Edit Expense' : 'Add Expense',
@@ -57,7 +60,7 @@ function ManageExpense({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <ExpenseForm onCancel={cancelHandler} onSubmit={confirmHandler}  submitButtonLabel={isEditing ? 'Update' : 'Add'} />
+            <ExpenseForm onCancel={cancelHandler} onSubmit={confirmHandler} defaultValues={selectedExpense}  submitButtonLabel={isEditing ? 'Update' : 'Add'} />
             {/* <View style={styles.buttons}>
                 <Button style={styles.button} mode="flat" onPress={cancelHandler}>Cancel</Button>
                 <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
