@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import Input from "./Input";
 import { useState } from "react";
 import Button from "../UI/Button";
@@ -34,6 +34,23 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues}) {
             description: inputValues.description,
         };
 
+        const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
+        // here we say, if it is not not a number and if it is more than 0 it is valid
+        // here a date is valid if it can be converted into that date object. 
+        // new Date('Hello') return invalid in console
+        const dateIsValid = expenseData.date.toString() !== 'Invalid Date';
+        // if we could call new Date(2024-03-29).toString() in console, it would return us a date. 
+        // but if we call new Date('Hello').toString() it returns 'Invalid Date' 
+        // so we are checking if it does not return this its a valid date
+        // should be Date not date
+        const descriptionIsValid = expenseData.description.trim().length > 0;
+        // when we remove white space, it is not empty
+
+        if (amountIsValid || dateIsValid || descriptionIsValid)
+        {
+            Alert.alert('Invalid Input', 'Please check your input values')
+            return;
+        }
         onSubmit(expenseData);
     }
 

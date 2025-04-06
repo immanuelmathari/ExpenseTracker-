@@ -259,3 +259,8 @@ ExpenseForm.js
 NOTE) we see how to convert data object into a way we can read it in JS JavaScript
 date.js
 - we want to use another way to format the data
+
+9.157 Adding Validation
+ExpenseForm.js
+@submitHandler
+NOTE) We see how to do data validation and conversions
