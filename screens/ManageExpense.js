@@ -39,24 +39,36 @@ function ManageExpense({ route, navigation }) {
         navigation.goBack();
     }
 
-    function confirmHandler(expenseData) {
+    // function confirmHandler(expenseData) {
+    //     if (isEditing) {
+    //     //     expenseCtx.updateExpense({
+    //     //         id: editedExpenseId, 
+    //     //         expneseData:  { description: 'Test', amount: 103.34, date: new Date('2022-05-20') }, 
+    //     // });
+    //         // expenseCtx.updateExpense(editedExpenseId, expenseData);
+    //         expenseCtx.updateExpense({ id: editedExpenseId, expenseData:  expenseData });
+    //     } else {
+    //         // expenseCtx.addExpense({ 
+    //         //     expenseData: {
+    //         //         description: 'Testtwo', amount: 403.34, date: new Date('2025-05-20')}
+    //         //      });
+
+
+    //         storeExpense(expenseData);
+    //         expenseCtx.addExpense(expenseData);
+    //         // expenseCtx.addExpense({expenseData});
+    //     }
+    //     navigation.goBack();
+
+    // }
+
+    async function  confirmHandler(expenseData) {
         if (isEditing) {
-        //     expenseCtx.updateExpense({
-        //         id: editedExpenseId, 
-        //         expneseData:  { description: 'Test', amount: 103.34, date: new Date('2022-05-20') }, 
-        // });
-            // expenseCtx.updateExpense(editedExpenseId, expenseData);
-            expenseCtx.updateExpense({ id: editedExpenseId, expenseData:  expenseData });
+            expenseCtx.updateExpense({expenseData:  expenseData });
         } else {
-            // expenseCtx.addExpense({ 
-            //     expenseData: {
-            //         description: 'Testtwo', amount: 403.34, date: new Date('2025-05-20')}
-            //      });
-
-
-            storeExpense(expenseData);
-            expenseCtx.addExpense(expenseData);
-            // expenseCtx.addExpense({expenseData});
+            const id = await storeExpense(expenseData);
+            // now id is part of the object we send to the context
+            expenseCtx.addExpense({...expenseData, id: id});
         }
         navigation.goBack();
 

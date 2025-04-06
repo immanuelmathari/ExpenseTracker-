@@ -24,9 +24,11 @@ export const ExpenseContext = createContext({
 function expenseReducer(state, action) {
     switch (action.type) {
         case 'ADD':
-            const id = new Date().toString() + Math.random().toString();
+            // we need to comment it because action.payload from firebase now has its own unique id unlike before
+            // const id = new Date().toString() + Math.random().toString();
             // we pass what we receive the expense data and is made into a new data
-            return [{...action.payload, id: id}, ...state]
+            // return [{...action.payload, id: id}, ...state]
+            return [action.payload, ...state]
         case 'UPDATE':
             const updatableExpenseIndex = state.findIndex((expense) => expense.id === action.payload.id );
             const updatableExpense = state[updatableExpenseIndex];
@@ -37,7 +39,9 @@ function expenseReducer(state, action) {
         case 'DELETE':
             return state.filter((expense) => expense.id !== action.payload);
         case 'SET':
-            return action.payload;
+            // our data is in action.payload
+            const inverted = action.payload.reverse();
+            return inverted;
         default:
             return state;
     }

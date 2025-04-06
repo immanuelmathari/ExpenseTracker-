@@ -330,3 +330,17 @@ have the setExpenses
 - remove dummy_expenses @expensecontextprovider
 RecentExpenses.js
 - return the context
+
+10.167 Using response data from POST request
+- firebase stores records chronologically. older responses are at the top. its the opposite logic of what we had
+expenses-context.js
+@expensesReducer @SET
+- this is reordering 
+- then now we need to figure out what to do with the ID
+@case ADD
+- we want to use the ID returned by firebase
+- so we need to get a hold of that id when we send that request in 
+http.js
+- firebase gives us the id at the @storeExpense in its response
+- so in ManageExpense at the confirmHandler, well get the id now
+- so anything we get from the firebase we need to async wait for it
