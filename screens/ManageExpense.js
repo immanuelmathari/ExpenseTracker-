@@ -5,6 +5,7 @@ import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
 import { ExpenseContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
+import { storeExpense } from "../util/http";
 
 // function ManageExpense({  })
 function ManageExpense({ route, navigation }) {
@@ -51,6 +52,9 @@ function ManageExpense({ route, navigation }) {
             //     expenseData: {
             //         description: 'Testtwo', amount: 403.34, date: new Date('2025-05-20')}
             //      });
+
+
+            storeExpense(expenseData);
             expenseCtx.addExpense(expenseData);
             // expenseCtx.addExpense({expenseData});
         }

@@ -286,3 +286,32 @@ Input.js
 - remember we add an invalid prop in ExpenseForm.js
 @if(invalid)
 - see how to push styles into an input
+
+SECTION 10: Sending HTTP Requests
+10.162 Backend Setup (Firebase)
+- we create a project in firebase
+- goto realtime database create
+- have rules in test mode
+https://react-native-express-tracker-default-rtdb.firebaseio.com/
+this is the url you'll send requests to
+
+10.163 Installing Axios
+- we want to send requests
+- we can use fetch() API. 
+- we could also use axios
+> npm install axiox
+
+10.164 Sending POST HTTP Requests
+create
+util/http.js
+http.js
+ManageExpense.js
+@confirmHandler
+- by adding the storeExpense, we immediately are able to send this request to firestore
+
+10.165 Fetching Backend GET Requests
+http.js
+@fetchExpenses
+RecentExpenses.js
+@useEffect
+
