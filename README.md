@@ -315,3 +315,18 @@ http.js
 RecentExpenses.js
 @useEffect
 
+10.166 Transforming & Using Fetched Data
+- how to use it in recent expenses
+- comment out our context
+add usestate for fetchedExpenses
+- we still need to use context though in order to update. this will allow us to use data we already have plus the ones we add. because without it, we'll need to refresh everytime we add something
+expenses-context.js
+- we comment dummy data,
+we at createContext, 
+have the setExpenses
+- we add a new reducer case @expensesReducer SET
+- then in ExpensesContextProvider, we add setExpenses
+- add this function to our value
+- remove dummy_expenses @expensecontextprovider
+RecentExpenses.js
+- return the context

@@ -1,20 +1,21 @@
 import { createContext, useReducer } from "react";
 
-const DUMMY_EXPENSES = [
-    {id: 'e1', description: 'A pair of shoes', amount: 59.999, date: new Date('2025-01-01')},
-    {id: 'e2', description: 'A pair of pants', amount: 39.99, date: new Date('2025-02-01')},
-    {id: 'e3', description: 'A pair of socks', amount: 19.99, date: new Date('2025-03-01')},
-    {id: 'e4', description: 'A Car', amount: 59.99, date: new Date('2025-04-01')},
-    {id: 'e5', description: 'A House', amount: 39.99, date: new Date('2025-05-01')},
-    {id: 'e6', description: 'A Bitch', amount: 19.99, date: new Date('2025-06-01')},
-    {id: 'e7', description: 'Another Bitch', amount: 29.99, date: new Date('2025-06-01')},
-    {id: 'e8', description: 'Yet another Bitch', amount: 39.99, date: new Date('2025-06-01')},
-    {id: 'e9', description: 'A Beech', amount: 1999.99, date: new Date('2025-06-01')},
-]
+// const DUMMY_EXPENSES = [
+//     {id: 'e1', description: 'A pair of shoes', amount: 59.999, date: new Date('2025-01-01')},
+//     {id: 'e2', description: 'A pair of pants', amount: 39.99, date: new Date('2025-02-01')},
+//     {id: 'e3', description: 'A pair of socks', amount: 19.99, date: new Date('2025-03-01')},
+//     {id: 'e4', description: 'A Car', amount: 59.99, date: new Date('2025-04-01')},
+//     {id: 'e5', description: 'A House', amount: 39.99, date: new Date('2025-05-01')},
+//     {id: 'e6', description: 'A Bitch', amount: 19.99, date: new Date('2025-06-01')},
+//     {id: 'e7', description: 'Another Bitch', amount: 29.99, date: new Date('2025-06-01')},
+//     {id: 'e8', description: 'Yet another Bitch', amount: 39.99, date: new Date('2025-06-01')},
+//     {id: 'e9', description: 'A Beech', amount: 1999.99, date: new Date('2025-06-01')},
+// ]
 
 export const ExpenseContext = createContext({
     expenses: [],
     addExpense: ({description, amount, date}) => {},
+    setExpenses: (expenses) => {},
     deleteExpense: ({id}) => {},
     updateExpense: ({id, description, amount, date}) => {},
 
@@ -35,6 +36,8 @@ function expenseReducer(state, action) {
             return updatedExpenses;
         case 'DELETE':
             return state.filter((expense) => expense.id !== action.payload);
+        case 'SET':
+            return action.payload;
         default:
             return state;
     }
@@ -42,7 +45,7 @@ function expenseReducer(state, action) {
 
 function ExpenseContextProvider({ children }) {
     //  the second array in useReducer is default this is for when the first time it renders when we have no data. we want to set initial data
-    const [expenseState, dispatch] = useReducer(expenseReducer, DUMMY_EXPENSES);
+    const [expenseState, dispatch] = useReducer(expenseReducer, []);
 
     // function addExpense({ expenseData }) {
     //     dispatch({ type: 'ADD', payload: expenseData});
@@ -69,11 +72,16 @@ function ExpenseContextProvider({ children }) {
         dispatch({ type: 'UPDATE', payload: {id: id, data: expenseData }})
     }
 
+    function setExpenses(expenses) {
+        dispatch({ type: 'SET', payload: expenses});
+    }
+
     const value = {
         expenses: expenseState,
         addExpense: addExpense,
         deleteExpense: deleteExpense,
         updateExpense: updateExpense,
+        setExpenses: setExpenses,
     }
 
     return <ExpenseContext.Provider value={value}>{children}</ExpenseContext.Provider>

@@ -1,6 +1,6 @@
 import { Text } from "react-native";
 import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ExpenseContext } from "../store/expenses-context";
 import { getDateMinusDays } from "../util/date";
 import { fetchExpenses } from "../util/http";
@@ -8,16 +8,21 @@ import { fetchExpenses } from "../util/http";
 function RecentExpenses()
 {
     const expensesCtx = useContext(ExpenseContext);
+    // const [fetchedExpenses, setFetchedExpenses] = useState([]);
+
     useEffect(() => {
         // you dont turn useEffect into an async function
         async function getExpenses() {
             const expenses = await fetchExpenses();
+            // setFetchedExpenses(expenses);
+            expensesCtx.setExpenses(expenses);
         }
         getExpenses();
     }, [])
 
     // we want recent expneses
     const recentExpenses = expensesCtx.expenses.filter((expense) => {
+    // const recentExpenses = fetchedExpenses.filter((expense) => {
         const today = new Date();
         const date7DaysAgo = getDateMinusDays(today, 7);
 
