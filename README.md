@@ -264,3 +264,15 @@ date.js
 ExpenseForm.js
 @submitHandler
 NOTE) We see how to do data validation and conversions
+
+9.158 Providing visual validation feedback
+- highlight inputs that are invalid by changing their styles
+ExpenseForm.js
+@useState
+- we add isValid property
+NOTE) see how we use a shorthand expression to convert a truthy value to a boolean
+@inputChangeHandler to change the names of what we have changed
+- now in 
+@Alert, we do it in a better way to set validity
+@above the cancel and update, we want to have validity message @formisInvalid helper function
+- but the problem is that we get the error message right from the start when we are adding an expense

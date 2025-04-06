@@ -4,34 +4,42 @@ import { useState } from "react";
 import Button from "../UI/Button";
 import { getFormattedDate } from "../../util/date";
 
-function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues}) {
+function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
     // const [amountValue, setAmountValue] = useState('');
-    const [inputValues, setInputValues] = useState({
-        amount: defaultValues ? defaultValues.amount.toString() : "",
-        // date: defaultValues ? defaultValues.date.toISOString().slice(0,10) : '',
-        date: defaultValues ? getFormattedDate(defaultValues.date) : '',
-        description: defaultValues ? defaultValues.description : '',
+    // const [inputValues, setInputValues] = useState({
+    // amount: defaultValues ? defaultValues.amount.toString() : "",
+    // // date: defaultValues ? defaultValues.date.toISOString().slice(0,10) : '',
+    // date: defaultValues ? getFormattedDate(defaultValues.date) : '',
+    // description: defaultValues ? defaultValues.description : '',
+    // })
+    const [inputs, setInputs] = useState({
+        // amount: { value: defaultValues ? defaultValues.amount.toString() : "", isValid: defaultValues ? true : false },
+        // date: { value: defaultValues ? getFormattedDate(defaultValues.date) : '', isValid: defaultValues ? true : false },
+        // description: { value: defaultValues ? defaultValues.description : '', isValid: !!defaultValues },
+        amount: { value: defaultValues ? defaultValues.amount.toString() : "", isValid: true  },
+        date: { value: defaultValues ? getFormattedDate(defaultValues.date) : '', isValid: true },
+        description: { value: defaultValues ? defaultValues.description : '', isValid: true },
     })
 
     // function amountChangeHandler(enteredAmount) {
     //     setAmountValue(enteredAmount);
     // }
     function inputChangeHandler(inputIdentifier, enteredValue) {
-        setInputValues((curInputValues) => {
+        setInputs((curInputs) => {
             return {
-                ...curInputValues,
+                ...curInputs,
                 // this is vanilla JavaScript
-                [inputIdentifier] : enteredValue
-            }
+                [inputIdentifier]: { value: enteredValue, isValid: true },
+            };
         });
     }
 
     function submitHandler() {
         // collecting input values
         const expenseData = {
-            amount: +inputValues.amount,
-            date: new Date(inputValues.date),
-            description: inputValues.description,
+            amount: +inputs.amount.value,
+            date: new Date(inputs.date.value),
+            description: inputs.description.value,
         };
 
         const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
@@ -46,13 +54,21 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues}) {
         const descriptionIsValid = expenseData.description.trim().length > 0;
         // when we remove white space, it is not empty
 
-        if (amountIsValid || dateIsValid || descriptionIsValid)
-        {
-            Alert.alert('Invalid Input', 'Please check your input values')
+        if (amountIsValid && dateIsValid && descriptionIsValid) {
+            // Alert.alert('Invalid Input', 'Please check your input values')
+            setInputs((curInputs) => {
+                return {
+                    amount: { value: curInputs.amount.value, isValid: amountIsValid },
+                    date: { value: curInputs.date.value, isValid: dateIsValid },
+                    description: { value: curInputs.description.value, isValid: descriptionIsValid },
+                }
+            })
             return;
         }
         onSubmit(expenseData);
     }
+
+    const formIsInvalid = !inputs.amount.isValid || !inputs.date.isValid || !inputs.description.isValid;
 
     return <View style={styles.form}>
         <Text style={styles.title}>Your Expense</Text>
@@ -64,31 +80,32 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues}) {
                 // we need the first value needed by inputChangeHandle. the enteredAmount is passed by default
                 onChangeText: inputChangeHandler.bind(this, 'amount'),
                 // value: amountValue,
-                value: inputValues.amount,
+                value: inputs.amount.value,
             }} />
             <Input label="Date" style={styles.rowInput} textInputConfig={{
                 placeholder: 'YYYY-MM-DD',
                 maxLength: 10,
                 onChangeText: inputChangeHandler.bind(this, 'date'),
-                value: inputValues.date,
+                value: inputs.date.value,
             }} />
         </View>
 
-            <Input label="Description" textInputConfig={{
-                multiline: true,
-                // autoCorrect: false,
-                // autoCapitalize: 'sentences' 
-                onChangeText: inputChangeHandler.bind(this, 'description'),
-                value: inputValues.description
-            }} />
+        <Input label="Description" textInputConfig={{
+            multiline: true,
+            // autoCorrect: false,
+            // autoCapitalize: 'sentences' 
+            onChangeText: inputChangeHandler.bind(this, 'description'),
+            value: inputs.description.value
+        }} />
 
-<View style={styles.buttons}>
-                <Button style={styles.button} mode="flat" onPress={onCancel}>Cancel</Button>
-                <Button style={styles.button} onPress={submitHandler}>
-                    {/* {isEditing ? 'Update' : 'Add'} */}
-                    {submitButtonLabel}
-                    </Button>
-            </View>
+        {formIsInvalid && (<Text>Invalid input values. Please check your entered data</Text>)}
+        <View style={styles.buttons}>
+            <Button style={styles.button} mode="flat" onPress={onCancel}>Cancel</Button>
+            <Button style={styles.button} onPress={submitHandler}>
+                {/* {isEditing ? 'Update' : 'Add'} */}
+                {submitButtonLabel}
+            </Button>
+        </View>
     </View>
 
 }
