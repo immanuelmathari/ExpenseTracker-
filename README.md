@@ -276,3 +276,13 @@ NOTE) see how we use a shorthand expression to convert a truthy value to a boole
 @Alert, we do it in a better way to set validity
 @above the cancel and update, we want to have validity message @formisInvalid helper function
 - but the problem is that we get the error message right from the start when we are adding an expense
+
+9.159 Adding Error Styling
+@ExpenseForm styles.errorText
+- we want to highlight the invalid inputs
+- in the inputs, we interchange. so if the invalid is false, it becomes true. so invalid is true if the input is not valid
+Input.js
+@invalidLabels
+- remember we add an invalid prop in ExpenseForm.js
+@if(invalid)
+- see how to push styles into an input
