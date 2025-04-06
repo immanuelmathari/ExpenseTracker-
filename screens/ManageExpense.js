@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
@@ -6,9 +6,12 @@ import Button from "../components/UI/Button";
 import { ExpenseContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import { deleteExpense, storeExpense, updateExpense } from "../util/http";
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 // function ManageExpense({  })
 function ManageExpense({ route, navigation }) {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const expenseCtx = useContext(ExpenseContext);
     // const editedExpenseId = route.params.expenseId; 
     // params could be undefined if we are not passing any params to the screen, so we can use optional chaining to avoid errors
@@ -36,6 +39,7 @@ function ManageExpense({ route, navigation }) {
     // }
 
     async function deleteExpenseHandler() {
+        setIsSubmitting(true); // no need to set it to false after because we close it
         await deleteExpense(editedExpenseId);
         expenseCtx.deleteExpense( {id: editedExpenseId} ); // if this is first, we are removing it from ui first. so if backend fails, it will appear deleted but still be there
         navigation.goBack();
@@ -70,8 +74,9 @@ function ManageExpense({ route, navigation }) {
     // }
 
     async function  confirmHandler(expenseData) {
+        setIsSubmitting(true);
         if (isEditing) {
-            console.log(expenseData);
+            // console.log(expenseData);
             expenseCtx.updateExpense({ id: editedExpenseId, expenseData: expenseData });
             await updateExpense(editedExpenseId, expenseData);
         } else {
@@ -81,6 +86,10 @@ function ManageExpense({ route, navigation }) {
         }
         navigation.goBack();
 
+    }
+
+    if(isSubmitting) {
+        return <LoadingOverlay />
     }
 
     return (

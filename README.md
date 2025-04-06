@@ -350,3 +350,17 @@ http.js
 @updateExpense
 @deleteExpense
 - somehow we dont need async because we dont need to do anything with the response. because we dont work with the response we remove async. we just return the result of doing the delete function nothing mrore
+
+10.169 Managing the Loaded State
+- a loading spinner when the request is on its way
+UI/LoadingOverlay.js
+NOTE) This is what you can do
+LoadingOverlay.js
+- to get a loading spinner we use ActivityIndicator
+RecentExpenses.js
+@useState
+@useEffect setIsFetching
+@isFetching
+ManageExpense.js
+- we add it when we do actions. so we add isSubmitting
+- isSubmitting
